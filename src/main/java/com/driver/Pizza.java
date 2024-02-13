@@ -29,7 +29,7 @@ public class Pizza {
             this.price+=80;
 
         }
-        System.out.println("Extra Cheese Added:"+this.price);
+        System.out.println("Extra Cheese Added: "+this.price);
 
     }
 
@@ -40,7 +40,7 @@ public class Pizza {
             extraToppingsAdded=true;
             this.price+=isVeg?70:120;
         }
-        System.out.println("Extra Toppings Added:"+price);
+        System.out.println("Extra Toppings Added: "+price);
     }
 
     public void addTakeaway(){
