@@ -2,52 +2,58 @@ package com.driver;
 
 public class Pizza {
 
-    private int price;
-    private Boolean isVeg;
-    private String bill;
-    private boolean hasExtraCheese;
-    private boolean hasExtraToppings;
-    private boolean isTakeaway;
+    private int basePrice;
+    private boolean isVeg;
+    private boolean extraCheeseAdded;
+    private boolean extraToppingsAdded;
+    private boolean paperBagAdded;
 
-    public Pizza(Boolean isVeg) {
+    public Pizza(boolean isVeg) {
         this.isVeg = isVeg;
-        this.price = isVeg ? 300 : 400;
-        this.bill = "";
-        this.hasExtraCheese = false;
-        this.hasExtraToppings = false;
-        this.isTakeaway = false;
+        this.basePrice = isVeg ? 300 : 400;
     }
 
     public int getPrice() {
-        return price;
+        return basePrice;
     }
 
     public void addExtraCheese() {
-        if (!hasExtraCheese) {
-            price += 80;
-            hasExtraCheese = true;
-            bill += "Extra Cheese Added: ₹" + 80 + "\n";
+        if (!extraCheeseAdded) {
+            extraCheeseAdded = true;
+            basePrice += 80; // Adding extra cheese price
+           // System.out.println("Extra Cheese Added: " + 80);
         }
     }
 
     public void addExtraToppings() {
-        if (!hasExtraToppings) {
-            price += isVeg ? 70 : 120;
-            hasExtraToppings = true;
-            bill += "Extra Toppings Added: ₹" + (isVeg ? 70 : 120) + "\n";
+        if (!extraToppingsAdded) {
+            extraToppingsAdded = true;
+            basePrice += isVeg ? 70 : 120; // Adding extra toppings price
+            //System.out.println("Extra Toppings Added: " + (isVeg ? 70 : 120));
         }
     }
 
     public void addTakeaway() {
-        if (!isTakeaway) {
-            price += 20;
-            isTakeaway = true;
-            bill += "Paperbag Added: ₹" + 20 + "\n";
+        if (!paperBagAdded) {
+            paperBagAdded = true;
+            basePrice += 20; // Adding paper bag price
+            //System.out.println("Paperbag Added: " + 20);
         }
     }
 
     public String getBill() {
-        bill += "Base Price Of The Pizza: ₹" + price + "\n";
-        return bill;
+        StringBuilder billBuilder = new StringBuilder();
+        billBuilder.append("Base Price Of The Pizza: ").append(getPrice()).append("\n");
+        if (extraCheeseAdded) {
+            billBuilder.append("Extra Cheese Added: ").append(80).append("\n");
+        }
+        if (extraToppingsAdded) {
+            billBuilder.append("Extra Toppings Added: ").append(isVeg ? 70 : 120).append("\n");
+        }
+        if (paperBagAdded) {
+            billBuilder.append("Paperbag Added: ").append(20).append("\n");
+        }
+        billBuilder.append("Total Price: ").append(basePrice).append("\n");
+        return billBuilder.toString();
     }
 }
