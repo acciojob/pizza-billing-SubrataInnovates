@@ -2,69 +2,55 @@ package com.driver;
 
 public class Pizza {
 
-    private int price;
-    private Boolean isVeg;
-    private String bill;
+    private int basePrice;
+    private boolean isVeg;
     private boolean extraCheeseAdded;
     private boolean extraToppingsAdded;
     private boolean takeawayAdded;
+    private String bill;
 
-    public Pizza(Boolean isVeg){
+    public Pizza(Boolean isVeg) {
         this.isVeg = isVeg;
-        // your code goes here
-        this.price=isVeg ? 300:400;
+        this.basePrice = isVeg ? 300 : 400; // Setting base price based on whether pizza is veg or non-veg
     }
 
-    public int getPrice()
-    {
-        return this.price;
-
+    public int getPrice() {
+        return this.basePrice;
     }
 
-    public void addExtraCheese(){
-        // your code goes here
-        if(!extraCheeseAdded)
-        {
-            extraCheeseAdded=true;
-            this.price+=80;
-
+    public void addExtraCheese() {
+        if (!extraCheeseAdded) {
+            extraCheeseAdded = true;
+            this.basePrice += 80; // Adding extra cheese price
         }
-        System.out.println("Extra Cheese Added: "+this.price);
-
+        System.out.println("Extra Cheese Added: " + this.basePrice);
     }
 
-    public void addExtraToppings(){
-        // your code goes here
-        if(!extraToppingsAdded)
-        {
-            extraToppingsAdded=true;
-            this.price+=isVeg?70:120;
+    public void addExtraToppings() {
+        if (!extraToppingsAdded) {
+            extraToppingsAdded = true;
+            this.basePrice += isVeg ? 70 : 120; // Adding extra toppings price based on veg or non-veg pizza
         }
-        System.out.println("Extra Toppings Added: "+price);
+        System.out.println("Extra Toppings Added: " + this.basePrice);
     }
 
-    public void addTakeaway(){
-        // your code goes here
-        if(!takeawayAdded)
-        {
-            takeawayAdded=true;
-            this.price+=20;
+    public void addTakeaway() {
+        if (!takeawayAdded) {
+            takeawayAdded = true;
+            this.basePrice += 20; // Adding paper bag price for takeaway
         }
-
     }
 
-    public String getBill(){
-        // your code goes here
-        StringBuilder bill=new StringBuilder();
-        bill.append("Base Price Of The Pizza: ").append(this.price).append("\n");
-        if(extraCheeseAdded)
+    public String getBill() {
+        StringBuilder bill = new StringBuilder();
+        bill.append("Base Price Of The Pizza: ").append(this.basePrice).append("\n");
+        if (extraCheeseAdded)
             bill.append("Extra Cheese Added: 80\n");
-        if(extraToppingsAdded)
-            bill.append("Extra Toppings Added: ").append(isVeg?70:120).append("\n");
+        if (extraToppingsAdded)
+            bill.append("Extra Toppings Added: ").append(isVeg ? 70 : 120).append("\n");
         if (takeawayAdded)
             bill.append("Paperbag Added: 20\n");
-
-        bill.append("Total Price: ").append(getPrice()).append(("\n"));
+        bill.append("Total Price: ").append(getPrice()).append("\n");
         return bill.toString();
     }
 }
